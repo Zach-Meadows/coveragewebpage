@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/coveragewebpage/static/css/main.7c9828e8.css",
+    "main.js": "/coveragewebpage/static/js/main.f1a75916.js",
+    "static/js/787.f9a0cc3a.chunk.js": "/coveragewebpage/static/js/787.f9a0cc3a.chunk.js",
+    "index.html": "/coveragewebpage/index.html",
+    "main.7c9828e8.css.map": "/coveragewebpage/static/css/main.7c9828e8.css.map",
+    "main.f1a75916.js.map": "/coveragewebpage/static/js/main.f1a75916.js.map",
+    "787.f9a0cc3a.chunk.js.map": "/coveragewebpage/static/js/787.f9a0cc3a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7c9828e8.css",
+    "static/js/main.f1a75916.js"
+  ]
+}
