@@ -189,6 +189,14 @@ function App() {
                     </div>
                 })}
             </div>
+            <div className='features'>
+            <div>Features to come:</div>
+            <ul>
+                <li>Move Learn coverage breakdown</li>
+                <li>Best Movesets by coverage</li>
+            </ul>
+</div>
+            <div className="footer">For questions and help go to <a target="_blank" rel='noreferrer' href='https://www.twitch.tv/qwarzach'>https://www.twitch.tv/qwarzach</a></div>
         </div>
     );
 }
