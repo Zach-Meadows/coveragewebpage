@@ -18,6 +18,10 @@
 .frTitle{
   font-size: 50px;
 }
+.warning{
+  font-style: italic;
+  color: red;
+}
 
 .types{
   display: flex;
@@ -50,7 +54,6 @@
 .typeNode {
   border-radius: 3px;
 }
-
 .features {
   display: flex;
   flex-direction: column;
@@ -60,6 +63,7 @@
 
 .footer {
   margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .effectivenessOutput {
