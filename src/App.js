@@ -283,7 +283,7 @@ function App() {
             <div className='features'>
                 <div>Features to come:</div>
                 <ul>
-                    <li>Move Learn coverage breakdown</li>
+                    <li><s>Move Learn coverage breakdown</s></li>
                     <li>Best Movesets by coverage</li>
                 </ul>
             </div>
