@@ -38,12 +38,11 @@ function App() {
 
 
     useEffect(() => {
-        console.log("state updated")
+        //console.log("state updated")
     });
 
     function learnTypeChange(type) {
         type = type.target.innerText
-        console.log(`changing learn type to ${type}`)
         setLearnType(type)
         if (type === undefined) {
             setLearning(false)
@@ -129,7 +128,6 @@ function App() {
             }
 
             if (learnType !== undefined) {
-                console.log(learnType)
                 setLearning(true)
                 // list of typesets
                 let moveVariations = []
@@ -147,12 +145,9 @@ function App() {
                 for (let i = 0; i < moveVariations.length; i++) {
                     let currentEffectiveness = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
                     let currentTypeSet = moveVariations[i]
-                    console.log(moveVariations)
-                    console.log(currentTypeSet)
                     // loop through type in current variation
                     for (let i = 0; i < currentTypeSet.length; i++) {
                         let currentType = currentTypeSet[i]
-                        console.log(currentType)
                         //loops through numbers of effectiveness of each type
                         for (let j = 0; j < baseEffectiveness[currentType].length; j++) {
                             //if current type effectiveness better than 0, replace
@@ -162,13 +157,9 @@ function App() {
                         }
 
                     }
-                    console.log(currentEffectiveness)
                     effectivenessVariations.push(currentEffectiveness)
                 }
                 setLearnOptions(effectivenessVariations)
-                console.log(effectivenessVariations)
-
-
 
             }
             setEffectiveness(totalEffective)
@@ -252,9 +243,15 @@ function App() {
 
             </div>
             {learningAmove ? <div className='effectivenessOutput'>{learnOptions.map((set, j) => {
-                console.log(set)
-                return <div>
-                    <h4>Replacing type{j + 1}({stateTypes[j]})</h4>
+                let activeTypes = []
+                for (let k = 0; k < stateTypes.length; k++) {
+                    if (stateTypes[k] !== undefined) {
+                        activeTypes.push(stateTypes[k])
+                    }
+                    
+                }
+                return <div key={j}>
+                    <h4>Replacing type{stateTypes.indexOf(activeTypes[j]) + 1}({activeTypes[j]})</h4>
                     <p><strong>{count2(set)}</strong> total 2x Effectives</p>
                     <div className='effectivenessOutput'>
                         {types.map((item, i) => {
