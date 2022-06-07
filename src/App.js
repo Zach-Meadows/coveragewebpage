@@ -4,7 +4,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import React, { useState, useEffect } from 'react';
 import { Button, Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import allEffectiveness from './allEffectiveness.json'
+import physicalEffectiveness from './physicalEffectiveness.json'
+import specialEffectiveness from './specialEffectiveness.json'
 
 function App() {
 
@@ -48,13 +50,13 @@ function App() {
             setLearning(false)
         }
     }
-    function count2(list){
+    function count2(list) {
         let totalTwos = 0
         for (let i = 0; i < list.length; i++) {
-            if (list[i] === 2){
+            if (list[i] === 2) {
                 totalTwos += 1
             }
-            
+
         }
         return totalTwos
     }
@@ -248,7 +250,7 @@ function App() {
                     if (stateTypes[k] !== undefined) {
                         activeTypes.push(stateTypes[k])
                     }
-                    
+
                 }
                 return <div key={j}>
                     <h4>Replacing type{stateTypes.indexOf(activeTypes[j]) + 1}({activeTypes[j]})</h4>
@@ -272,16 +274,94 @@ function App() {
                         })}</div>
                 </div>
             })}</div> : <></>}
-            {false ? <div><h3>Best Movesets By Single-Type Coverage</h3>
-                <Accordion><AccordionSummary expandIcon={<ExpandMoreIcon />}>Best Coverage Sets (mixed atk)</AccordionSummary><AccordionDetails>This is where stuff goes</AccordionDetails></Accordion>
-                <Accordion><AccordionSummary expandIcon={<ExpandMoreIcon />}>Best Coverage Sets (physical atk)</AccordionSummary><AccordionDetails>This is where stuff goes</AccordionDetails></Accordion>
-                <Accordion><AccordionSummary expandIcon={<ExpandMoreIcon />}>Best Coverage Sets (special atk)</AccordionSummary><AccordionDetails>This is where stuff goes</AccordionDetails></Accordion> </div>
+            {true ? <div><h3>Best Movesets By Single-Type Coverage</h3>
+                <Accordion><AccordionSummary expandIcon={<ExpandMoreIcon />}>Best Coverage Sets (mixed atk)</AccordionSummary><AccordionDetails>{allEffectiveness.sort((a, b) => { if (a['twoTimes'] < b['twoTimes']) { return 1 } else if (a['twoTimes'] > b['twoTimes']) { return -1 } }).slice(0, 5).map((combo, k) => {
+
+                    return <div key={k} className="moveCombo">
+                        <strong>Move Types</strong>
+                        <div className='moveTypeContainer'>{combo['types'].map((type, q) => {
+                            return <h4 key={q} className={type}>{type}</h4>
+                        })}</div>
+                        <p><strong>{combo['twoTimes']}</strong> total 2x Effectives</p>
+                        <div className='effectivenessOutput'>
+                            {types.map((item, i) => {
+                                var numberClass = 'neutral'
+                                if (combo['effectiveness'][i] === 1 || combo['effectiveness'].every((num) => num === 0)) {
+                                    numberClass = 'neutral'
+                                }
+                                else if (combo['effectiveness'][i] < 1) {
+                                    numberClass = 'notEffective'
+                                }
+                                else {
+                                    numberClass = "superEffective"
+                                }
+                                return <div key={i} className="typeNode">
+                                    <div className={`${item} typeName`} value={item}>{item}</div>
+                                    <div className={`typeNumber ${numberClass}`}>{combo['effectiveness'][i]}</div>
+                                </div>
+                            })}</div>
+                    </div>
+                })}</AccordionDetails></Accordion>
+                <Accordion><AccordionSummary expandIcon={<ExpandMoreIcon />}>Best Coverage Sets (physical atk)</AccordionSummary><AccordionDetails>{physicalEffectiveness.sort((a, b) => { if (a['twoTimes'] < b['twoTimes']) { return 1 } else if (a['twoTimes'] > b['twoTimes']) { return -1 } }).slice(0, 5).map((combo, k) => {
+
+return <div key={k} className="moveCombo">
+    <strong>Move Types</strong>
+    <div className='moveTypeContainer'>{combo['types'].map((type, q) => {
+        return <h4 key={q} className={type}>{type}</h4>
+    })}</div>
+    <p><strong>{combo['twoTimes']}</strong> total 2x Effectives</p>
+    <div className='effectivenessOutput'>
+        {types.map((item, i) => {
+            var numberClass = 'neutral'
+            if (combo['effectiveness'][i] === 1 || combo['effectiveness'].every((num) => num === 0)) {
+                numberClass = 'neutral'
+            }
+            else if (combo['effectiveness'][i] < 1) {
+                numberClass = 'notEffective'
+            }
+            else {
+                numberClass = "superEffective"
+            }
+            return <div key={i} className="typeNode">
+                <div className={`${item} typeName`} value={item}>{item}</div>
+                <div className={`typeNumber ${numberClass}`}>{combo['effectiveness'][i]}</div>
+            </div>
+        })}</div>
+</div>
+})}</AccordionDetails></Accordion>
+                <Accordion><AccordionSummary expandIcon={<ExpandMoreIcon />}>Best Coverage Sets (special atk)</AccordionSummary><AccordionDetails>{specialEffectiveness.sort((a, b) => { if (a['twoTimes'] < b['twoTimes']) { return 1 } else if (a['twoTimes'] > b['twoTimes']) { return -1 } }).slice(0, 5).map((combo, k) => {
+
+                    return <div key={k} className="moveCombo">
+                        <strong>Move Types</strong>
+                        <div className='moveTypeContainer'>{combo['types'].map((type, q) => {
+                            return <h4 key={q} className={type}>{type}</h4>
+                        })}</div>
+                        <p><strong>{combo['twoTimes']}</strong> total 2x Effectives</p>
+                        <div className='effectivenessOutput'>
+                            {types.map((item, i) => {
+                                var numberClass = 'neutral'
+                                if (combo['effectiveness'][i] === 1 || combo['effectiveness'].every((num) => num === 0)) {
+                                    numberClass = 'neutral'
+                                }
+                                else if (combo['effectiveness'][i] < 1) {
+                                    numberClass = 'notEffective'
+                                }
+                                else {
+                                    numberClass = "superEffective"
+                                }
+                                return <div key={i} className="typeNode">
+                                    <div className={`${item} typeName`} value={item}>{item}</div>
+                                    <div className={`typeNumber ${numberClass}`}>{combo['effectiveness'][i]}</div>
+                                </div>
+                            })}</div>
+                    </div>
+                })}</AccordionDetails></Accordion> </div>
                 : <></>}
             <div className='features'>
                 <div>Features to come:</div>
                 <ul>
                     <li><s>Move Learn coverage breakdown</s></li>
-                    <li>Best Movesets by coverage</li>
+                    <li><s>Best Movesets by coverage</s></li>
                 </ul>
             </div>
             <div className="footer">For questions and help go to <a target="_blank" rel='noreferrer' href='https://www.twitch.tv/qwarzach'>https://www.twitch.tv/qwarzach</a></div>

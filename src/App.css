@@ -50,6 +50,22 @@
 .superEffective {
   background-color: rgb(0, 223, 0);
 }
+.moveTypeContainer{
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:center;
+  font-size: 20px;
+}
+.moveCombo{
+  border-top: 1px solid black;
+}
+.moveTypeContainer > * {
+  margin: 5px;
+  padding: 8px;
+  border-radius: 5px;
+}
 
 .typeNode {
   border-radius: 3px;
